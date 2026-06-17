@@ -211,6 +211,24 @@ button:disabled{
     font-size:20px;
     font-weight:600;
 }
+.prediction-btn{
+    display:block;
+    width:fit-content;
+    margin:15px auto;
+    background:#22c55e;
+    color:white;
+    text-decoration:none;
+    padding:12px 24px;
+    border-radius:8px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.prediction-btn:hover{
+    background:#16a34a;
+    transform:translateY(-2px);
+}
+
 
 @media(max-width:600px){
 
@@ -452,7 +470,7 @@ year: document.getElementById("year").value,
 match2: scores[1] || "",
 match3: scores[2] || "",
 match4: scores[3] || "",*/
-match5: scores[4] || ""
+match5: scores[0] || ""
 };
 
 try {
@@ -515,22 +533,7 @@ btn.innerText = "Submit Prediction";
 }
 
 }
-    .prediction-btn{
-    display:inline-block;
-    background:#22c55e;
-    color:white;
-    text-decoration:none;
-    padding:12px 24px;
-    border-radius:8px;
-    font-weight:bold;
-    transition:0.3s;
-}
-
-.prediction-btn:hover{
-    background:#16a34a;
-    transform:translateY(-2px);
-}
-
+   
 </script>
 
 </body>
