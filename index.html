@@ -309,6 +309,10 @@ Predict tomorrow's scores and compete with fellow students.
 <button id="submitBtn" onclick="submitPrediction()">
 Submit Prediction
 </button>
+ <a href="https://world-cup-prediction1.pages.dev/" class="prediction-btn">
+    Click Here for Newest Prediction
+</a>
+
 
 <div class="footer">
 🚀 Designed & Developed by <strong>Faris Moideen</strong><br>
@@ -321,7 +325,7 @@ Submit Prediction
 
 const matches = [
 
-{
+/*{
 home:"France",
 away:"Senegal",
 homeLogo:"france.png",
@@ -347,7 +351,7 @@ home:"Austria",
 away:"Jordan",
 homeLogo:"austria.png",
 awayLogo:"jordan.png"
-},
+},*/
 
 {
 home:"Portugal",
@@ -444,10 +448,10 @@ name: document.getElementById("name").value,
 department: document.getElementById("department").value,
 year: document.getElementById("year").value,
 
-match1: scores[0] || "",
+/*match1: scores[0] || "",
 match2: scores[1] || "",
 match3: scores[2] || "",
-match4: scores[3] || "",
+match4: scores[3] || "",*/
 match5: scores[4] || ""
 };
 
@@ -510,6 +514,21 @@ btn.innerText = "Submit Prediction";
 
 }
 
+}
+    .prediction-btn{
+    display:inline-block;
+    background:#22c55e;
+    color:white;
+    text-decoration:none;
+    padding:12px 24px;
+    border-radius:8px;
+    font-weight:bold;
+    transition:0.3s;
+}
+
+.prediction-btn:hover{
+    background:#16a34a;
+    transform:translateY(-2px);
 }
 
 </script>
