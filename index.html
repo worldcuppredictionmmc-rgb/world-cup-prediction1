@@ -1,0 +1,518 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>World Cup Prediction Hub</title>
+
+<style>
+
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:Arial, sans-serif;
+}
+
+body{
+    background:#0f172a;
+    color:white;
+    min-height:100vh;
+}
+
+.container{
+    width:90%;
+    max-width:900px;
+    margin:auto;
+    padding:20px;
+}
+
+.header{
+    text-align:center;
+    margin-top:20px;
+}
+
+.logo{
+    width:140px;
+    height:140px;
+    object-fit:contain;
+    margin-bottom:15px;
+}
+
+
+.header h2{
+    font-size:34px;
+    font-weight:bold;
+}
+
+.header p{
+    color:#cbd5e1;
+    font-size:20px;
+}
+
+.header p{
+    color:#cbd5e1;
+    font-size:20px;
+}
+
+.union-title{
+    font-size:42px;
+    font-weight:900;
+    letter-spacing:2px;
+    color:#f8fafc;
+    margin-top:10px;
+    margin-bottom:15px;
+}
+
+.header h2{
+    font-size:34px;
+    font-weight:bold;
+    margin-bottom:10px;
+}
+
+.header p{
+    color:#cbd5e1;
+    font-size:20px;
+    margin-bottom:15px;
+}
+
+.event-tag{
+    margin-top:20px;
+    color:#22c55e;
+    font-size:24px;
+    font-weight:700;
+    letter-spacing:1px;
+}
+
+.title{
+    text-align:center;
+    margin:30px 0;
+}
+
+.title{
+    text-align:center;
+    margin:30px 0;
+}
+
+.title h1{
+    font-size:48px;
+    font-weight:bold;
+}
+
+.title p{
+    color:#94a3b8;
+}
+
+.form-card{
+    background:#1e293b;
+    padding:20px;
+    border-radius:15px;
+    margin-bottom:20px;
+}
+
+.input-group{
+    margin-bottom:15px;
+}
+
+label{
+    display:block;
+    margin-bottom:5px;
+}
+
+input,select{
+    width:100%;
+    padding:12px;
+    border:none;
+    border-radius:10px;
+    background:#334155;
+    color:white;
+}
+
+.row{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:15px;
+}
+
+.matches-title{
+    margin:25px 0 15px;
+}
+
+.match-card{
+    background:#1e293b;
+    padding:15px;
+    border-radius:15px;
+    margin-bottom:15px;
+}
+
+.teams{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+}
+
+.team{
+    display:flex;
+    align-items:center;
+    gap:10px;
+}
+
+.team img{
+    width:50px;
+    height:50px;
+    object-fit:cover;
+    border-radius:50%;
+    border:2px solid white;
+    background:white;
+}
+
+.score-area{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    gap:10px;
+    margin-top:15px;
+}
+
+.score{
+    width:70px;
+    text-align:center;
+}
+
+.vs{
+    font-weight:bold;
+}
+
+button{
+    width:100%;
+    padding:15px;
+    border:none;
+    border-radius:12px;
+    background:#22c55e;
+    color:white;
+    font-size:18px;
+    cursor:pointer;
+}
+
+button:hover{
+    opacity:.9;
+}
+
+button:disabled{
+    opacity:0.6;
+    cursor:not-allowed;
+}
+
+.footer{
+    text-align:center;
+    margin-top:60px;
+    padding:30px;
+    color:#cbd5e1;
+    font-size:20px;
+    font-weight:600;
+}
+
+@media(max-width:600px){
+
+.row{
+    grid-template-columns:1fr;
+}
+
+.team span{
+    font-size:13px;
+}
+
+.team img{
+    width:35px;
+    height:35px;
+}
+
+.score{
+    width:55px;
+}
+
+}
+
+</style>
+</head>
+<body>
+
+<div class="container">
+
+<div class="header">
+<img src="logo1.png" class="logo">
+
+<h1 class="union-title">
+AAVAAZ COLLEGE UNION
+</h1>
+
+<h2>
+Mary Matha Arts & Science College
+</h2>
+
+<p>Mananthavady</p>
+
+<h4 class="event-tag">
+⚽ FIFA WORLD CUP 2026 PREDICTION CONTEST ⚽
+</h4>
+
+</div>
+
+<div class="title">
+<h1>🏆 World Cup Prediction Hub</h1>
+<p>
+Predict tomorrow's scores and compete with fellow students.
+</p>
+</div>
+
+<div class="form-card">
+
+<div class="input-group">
+<label>Name</label>
+<input type="text" id="name" required>
+</div>
+
+<div class="row">
+
+<div class="input-group">
+<label>Department</label>
+<select id="department">
+<option>Select Department</option>
+<option>Chemistry</option>
+<option>Computer Science</option>
+<option>Commerce</option>
+<option>English</option>
+<option>Mathematics</option>
+<option>Physics</option>
+<option>Social Science - Economics</option>
+</select>
+</div>
+
+<div class="input-group">
+<label>Year</label>
+<select id="year">
+<option>Select Year</option>
+<option>1st Year</option>
+<option>2nd Year</option>
+<option>3rd Year</option>
+</select>
+</div>
+
+</div>
+
+</div>
+
+<h2 class="matches-title">Tomorrow's Matches</h2>
+
+<div id="matches-container"></div>
+
+<button id="submitBtn" onclick="submitPrediction()">
+Submit Prediction
+</button>
+
+<div class="footer">
+🚀 Designed & Developed by <strong>Faris Moideen</strong><br>
+@ IT Club Dept.of CS
+</div>
+
+</div>
+
+<script>
+
+const matches = [
+
+{
+home:"France",
+away:"Senegal",
+homeLogo:"france.png",
+awayLogo:"senegal.png"
+},
+
+{
+home:"Iraq",
+away:"Norway",
+homeLogo:"iraq.png",
+awayLogo:"norway.png"
+},
+
+{
+home:"Argentina",
+away:"Algeria",
+homeLogo:"argentina.png",
+awayLogo:"algeria.png"
+},
+
+{
+home:"Austria",
+away:"Jordan",
+homeLogo:"austria.png",
+awayLogo:"jordan.png"
+},
+
+{
+home:"Portugal",
+away:"DR Congo",
+homeLogo:"portugal.png",
+awayLogo:"drcongo.png"
+}
+
+];
+
+
+const container = document.getElementById("matches-container");
+
+matches.forEach(match => {
+
+container.innerHTML += `
+
+<div class="match-card">
+
+<div class="teams">
+
+<div class="team">
+<img src="${match.homeLogo}">
+<span>${match.home}</span>
+</div>
+
+<div class="team">
+<img src="${match.awayLogo}">
+<span>${match.away}</span>
+</div>
+
+</div>
+
+<div class="score-area">
+
+<input type="number" min="0" class="score home-score">
+
+<span class="vs">VS</span>
+
+<input type="number" min="0" class="score away-score">
+
+</div>
+
+</div>
+
+`;
+
+});
+
+async function submitPrediction() {
+
+const btn = document.getElementById("submitBtn");
+
+if (btn.disabled) return;
+
+btn.disabled = true;
+btn.innerText = "Submitting...";
+
+if (!document.getElementById("name").value) {
+  alert("Please enter your name");
+  btn.disabled = false;
+  btn.innerText = "Submit Prediction";
+  return;
+}
+
+if (document.getElementById("department").value === "Select Department") {
+  alert("Please select your department");
+  btn.disabled = false;
+  btn.innerText = "Submit Prediction";
+  return;
+}
+
+if (document.getElementById("year").value === "Select Year") {
+  alert("Please select your year");
+  btn.disabled = false;
+  btn.innerText = "Submit Prediction";
+  return;
+}
+
+
+const scores = [];
+
+document.querySelectorAll(".match-card").forEach(card => {
+
+const homeScore = card.querySelector(".home-score").value;
+const awayScore = card.querySelector(".away-score").value;
+
+scores.push(`${homeScore}-${awayScore}`);
+
+});
+
+const data = {
+name: document.getElementById("name").value,
+department: document.getElementById("department").value,
+year: document.getElementById("year").value,
+
+match1: scores[0] || "",
+match2: scores[1] || "",
+match3: scores[2] || "",
+match4: scores[3] || "",
+match5: scores[4] || ""
+};
+
+try {
+
+const response = await fetch(
+"https://script.google.com/macros/s/AKfycbyRo2iZuC73NiV-3clB7Hu0PEC3ziWMg7omrpvmNBPOw6BTW51zWjycbcBIKg-W1uzLJA/exec",
+{
+method: "POST",
+body: JSON.stringify(data)
+}
+);
+
+document.querySelector(".container").innerHTML = `
+<div style="text-align:center;padding:50px">
+
+<img src="logo1.png"
+style="width:120px">
+
+<h1 style="margin-top:20px;color:#22c55e;font-size:42px;">
+🎉 Prediction Submitted Successfully
+</h1>
+
+<p style="font-size:20px;margin-top:15px;">
+Best of luck! ⚽🏆
+</p>
+
+<p style="margin-top:15px;color:#cbd5e1;">
+Thank you for participating in the World Cup Prediction Hub.
+</p>
+
+<div style="
+margin-top:30px;
+background:#1e293b;
+padding:20px;
+border-radius:15px;
+max-width:500px;
+margin-left:auto;
+margin-right:auto;
+">
+
+<h3>${data.name}</h3>
+
+<p>${data.department}</p>
+
+<p>${data.year}</p>
+
+</div>
+
+</div>
+`;
+
+}catch(error) {
+
+console.error(error);
+alert("❌ Submission Failed");
+
+btn.disabled = false;
+btn.innerText = "Submit Prediction";
+
+}
+
+}
+
+</script>
+
+</body>
+</html>
