@@ -394,39 +394,39 @@ Submit Prediction
 const matches = [
 
 {
-home:"Switzerland",
-away:"Bosnia and Herzegovina",
-homeLogo:"swiz.png",
-awayLogo:"bosnia.png"
+home:"USA",
+away:"Australia",
+homeLogo:"usa.png",
+awayLogo:"austra.png"
 },
 
 {
-home:"Canada",
-away:"Qatar",
-homeLogo:"canada.png",
-awayLogo:"qatar.png"
+home:"Scotland",
+away:"Morocco",
+homeLogo:"sco.png",
+awayLogo:"moro.png"
 },
 
 {
-home:"Mexico",
-away:"South Korea",
-homeLogo:"mexico.png",
-awayLogo:"korea.png"
+home:"Brazil",
+away:"Haiti",
+homeLogo:"bra.png",
+awayLogo:"haiti.png"
 },
-/*
+
 {
-home:"Czechia",
-away:"South Africa",
-homeLogo:"czeh.png",
-awayLogo:"south africa.png"
+home:"Turkiye",
+away:"Paraguay",
+homeLogo:"tur.png",
+awayLogo:"para.png"
 }
 
 {
-home:"Portugal",
-away:"DR Congo",
-homeLogo:"portugal.png",
-awayLogo:"drcongo.png"
-} */
+home:"Netherlands",
+away:"Sweden",
+homeLogo:"nether.png",
+awayLogo:"swe.png"
+} 
 
 ];
 
@@ -519,14 +519,14 @@ year: document.getElementById("year").value,
 match1: scores[0] || "",
 match2: scores[1] || "",
 match3: scores[2] || "",
-/*match4: scores[3] || ""
-match5: scores[4] || ""*/
+match4: scores[3] || "",
+match5: scores[4] || ""
 };
 
 try {
 
 const response = await fetch(
-"https://script.google.com/macros/s/AKfycbwGTdeGy-8D6wXBOyu8uoH_g8EwvQBkERdrTmbCic9s44OSCBHtCJtWitgdTmkdu3rP/exec",
+"https://script.google.com/macros/s/AKfycbx6emQKVVzmXTXAW3MgS3JBsmBRQtDhKV1qHWqBVsN_U4neVSbNu-NxPaVYtsghSrfU4A/exec",
 {
 method: "POST",
 body: JSON.stringify(data)
