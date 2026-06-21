@@ -381,10 +381,10 @@ Predict tomorrow's scores and compete with fellow students.
 <button id="submitBtn" onclick="submitPrediction()">
 Submit Prediction
 </button>
-<button class="latest-btn"
+<!--<button class="latest-btn"
 onclick="window.open('https://world-cup-prediction.pages.dev/')">
  Click Here For Last Predictions
-</button>
+</button>-->
 <div class="footer">
  Designed & Developed by <strong>Faris Moideen</strong><br>
 @ IT Club Dept.of CS
@@ -395,41 +395,41 @@ onclick="window.open('https://world-cup-prediction.pages.dev/')">
 <script>
 
 const matches = [
+
+{
+home:"Belgium",
+away:"Iran",
+homeLogo:"bel.png",
+awayLogo:"irn.png"
+},
+
+{
+home:"Uruguay",
+away:"Cabo Verde",
+homeLogo:"uru.png",
+awayLogo:"cbv.png"
+},
+
+{
+home:"New Zealand",
+away:"Egypt",
+homeLogo:"nzld.png",
+awayLogo:"egy.png"
+},
+
+{
+home:"Argentina",
+away:"Austria",
+homeLogo:"argentina.png",
+awayLogo:"austria.png"
+},
 /*
-{
-home:"USA",
-away:"Australia",
-homeLogo:"usa.png",
-awayLogo:"austra.png"
-},
-
-{
-home:"Scotland",
-away:"Morocco",
-homeLogo:"sco.png",
-awayLogo:"moro.png"
-},
-
-{
-home:"Brazil",
-away:"Haiti",
-homeLogo:"bra.png",
-awayLogo:"haiti.png"
-},
-
-{
-home:"Turkiye",
-away:"Paraguay",
-homeLogo:"tur.png",
-awayLogo:"para.png"
-},
-*/
 {
 home:"Netherlands",
 away:"Sweden",
 homeLogo:"nether.png",
 awayLogo:"swe.png"
-} 
+} */
 
 ];
 
@@ -519,17 +519,17 @@ name: document.getElementById("name").value,
 department: document.getElementById("department").value,
 year: document.getElementById("year").value,
 
-/*match1: scores[0] || "",
+match1: scores[0] || "",
 match2: scores[1] || "",
 match3: scores[2] || "",
-match4: scores[3] || "",*/
-match5: scores[0] || ""
+match4: scores[3] || ""/*
+match5: scores[0] || ""*/
 };
 
 try {
 
 const response = await fetch(
-"https://script.google.com/macros/s/AKfycbx6emQKVVzmXTXAW3MgS3JBsmBRQtDhKV1qHWqBVsN_U4neVSbNu-NxPaVYtsghSrfU4A/exec",
+"https://script.google.com/macros/s/AKfycbzFsyG5QYwOMaJnyPi1htBcSxqwHJkCs1G2VumgiLRpkubtZvvlMal7z2-VKerl6-uQuw/exec",
 {
 method: "POST",
 body: JSON.stringify(data)
@@ -555,10 +555,10 @@ Best of luck!
 <p style="margin-top:15px;color:#cbd5e1;">
 Thank you for participating in the World Cup Prediction Hub.
 </p>
-    <button class="latest-btn"
+   <!-- <button class="latest-btn"
 onclick="window.open('https://world-cup-prediction1.pages.dev/')">
  Click Here For Lastest Predictions
-</button>
+</button>-->
 
 <div style="
 margin-top:30px;
