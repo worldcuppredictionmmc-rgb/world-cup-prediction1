@@ -397,25 +397,25 @@ onclick="window.open('https://world-cup-prediction.pages.dev/')">
 const matches = [
 
 {
-home:"Belgium",
-away:"Iran",
-homeLogo:"bel.png",
-awayLogo:"irn.png"
+home:"England",
+away:"Ghana",
+homeLogo:"england.png",
+awayLogo:"ghana.jpeg"
 },
 
 {
-home:"Uruguay",
-away:"Cabo Verde",
-homeLogo:"uru.png",
-awayLogo:"cbv.png"
+home:"Panama",
+away:"Croatia",
+homeLogo:"panama.png",
+awayLogo:"croatia.png"
 },
 
 {
-home:"New Zealand",
-away:"Egypt",
-homeLogo:"nzld.png",
-awayLogo:"egy.png"
-},
+home:"Colombia",
+away:"DR Congo",
+homeLogo:"colombia.png",
+awayLogo:"drcongo.png"
+}/*,
 
 {
 home:"Argentina",
@@ -423,7 +423,7 @@ away:"Austria",
 homeLogo:"argentina.png",
 awayLogo:"austria.png"
 },
-/*
+
 {
 home:"Netherlands",
 away:"Sweden",
@@ -521,15 +521,15 @@ year: document.getElementById("year").value,
 
 match1: scores[0] || "",
 match2: scores[1] || "",
-match3: scores[2] || "",
-match4: scores[3] || ""/*
+match3: scores[2] || ""/*,
+match4: scores[3] || ""
 match5: scores[0] || ""*/
 };
 
 try {
 
 const response = await fetch(
-"https://script.google.com/macros/s/AKfycbzFsyG5QYwOMaJnyPi1htBcSxqwHJkCs1G2VumgiLRpkubtZvvlMal7z2-VKerl6-uQuw/exec",
+"https://script.google.com/macros/s/AKfycbzXcoMhETYzIQ2H5FzYZk8MVWBHpXTqD0k5O0s1rgqTJ3Swqqoz-CRUTyuEUEGJbLLp/exec",
 {
 method: "POST",
 body: JSON.stringify(data)
