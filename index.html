@@ -437,7 +437,21 @@ home:"Egypt",
 away:"Iran",
 homeLogo:"egy.png",
 awayLogo:"irn.png"
-} 
+} ,
+
+{
+home:"Egypt",
+away:"Iran",
+homeLogo:"egy.png",
+awayLogo:"irn.png"
+},
+
+{
+home:"Egypt",
+away:"Iran",
+homeLogo:"egy.png",
+awayLogo:"irn.png"
+}
 ];
 
 
@@ -531,13 +545,15 @@ match2: scores[1] || "",
 match3: scores[2] || "",
 match4: scores[3] || "",
 match5: scores[4] || "",
-match5: scores[5] || ""
+match6: scores[5] || "",
+match7: scores[6] || "",
+match8: scores[7] || ""
 };
 
 try {
 
 const response = await fetch(
-"https://script.google.com/macros/s/AKfycbw6ZmZynLfjbaR133aQXIY8pGUXnn-EZVTxLzMGqnM9ogtz2W7lLrglGRMB8G-1jDhy/exec",
+"https://script.google.com/macros/s/AKfycbxC9mYklSFERXmNLrJAOYn1d9vW6qcnPlCz5K_DLsmUCkjc3_tQf8_zKNV3NfkLm6E/exec",
 {
 method: "POST",
 body: JSON.stringify(data)
