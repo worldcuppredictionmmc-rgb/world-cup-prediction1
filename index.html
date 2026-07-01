@@ -4,7 +4,6 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>World Cup Prediction Hub</title>
-
 <style>
 
 *{
@@ -199,6 +198,61 @@ select:focus{
     font-weight:bold;
 }
 
+.prediction-options{
+    display:flex;
+    gap:10px;
+    margin-top:20px;
+}
+
+.prediction-options label{
+    flex:1;
+    cursor:pointer;
+}
+
+.prediction-options input{
+    display:none;
+}
+
+.prediction-btn{
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    height:45px;
+    background:#334155;
+    border:2px solid #475569;
+    border-radius:12px;
+    font-weight:700;
+    color:white;
+    transition:.3s;
+    user-select:none;
+}
+
+.prediction-options label:hover .prediction-btn{
+    border-color:#38bdf8;
+    transform:translateY(-2px);
+}
+
+.prediction-options input:checked + .prediction-btn{
+    background:#22c55e;
+    border-color:#22c55e;
+    color:white;
+    box-shadow:0 0 15px rgba(34,197,94,.4);
+}
+
+@media(max-width:600px){
+
+.prediction-options{
+    gap:6px;
+}
+
+.prediction-btn{
+    height:48px;
+    font-size:13px;
+    padding:5px;
+}
+
+}
+
 button{
     width:100%;
     padding:16px;
@@ -262,8 +316,8 @@ button:disabled{
 }
 
 .team span{
-    font-size:13px;
-    font-weight:600;
+    font-size:15px;
+    font-weight:700;
 }
 
 .team img{
@@ -302,11 +356,40 @@ button:disabled{
 }
 
 }
+.prediction-options{
+display:flex;
+gap:12px;
+margin-top:18px;
+}
+
+.prediction-options label{
+flex:1;
+text-align:center;
+padding:12px;
+background:#334155;
+border:2px solid transparent;
+border-radius:12px;
+cursor:pointer;
+font-weight:600;
+transition:.3s;
+}
+
+.prediction-options input{
+display:none;
+}
+
+.prediction-options label:hover{
+border-color:#38bdf8;
+}
+
+.prediction-options input:checked + span{
+color:#22c55e;
+}
 
 </style>
 </head>
 <body>
-
+<div id="mainContent">
 <div class="container">
 
 <div class="header">
@@ -333,18 +416,27 @@ Mary Matha Arts & Science College
 <div class="title">
 <h1> World Cup Prediction Hub</h1>
 <p>
-Predict tomorrow's scores and compete with fellow students.
+World Cup 2026 round of 32 - Phase1.
 </p>
 </div>
 
 <div class="form-card">
-
 <div class="input-group">
 <label>Name</label>
-<input type="text" id="name" required>
+<input type="text" id="name">
+</div>
+<div class="input-group">
+<label>Role</label>
+<select id="role">
+<option>Student</option>
+<option>Faculty</option>
+</select>
 </div>
 
-<div class="row">
+<div class="input-group">
+<label>Admission Number</label>
+<input type="text" id="rollno">
+</div>
 
 <div class="input-group">
 <label>Department</label>
@@ -375,7 +467,7 @@ Predict tomorrow's scores and compete with fellow students.
 
 </div>
 
-<h2 class="matches-title">Tomorrow's Matches</h2>
+<h2 class="matches-title">Phase 2 Matches</h2>
 
 <div id="matches-container"></div>
 
@@ -393,71 +485,125 @@ onclick="window.open('https://world-cup-prediction.pages.dev/')">
 
 </div>
 
-<script>
+<script type="module">
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/12.15.0/firebase-app.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  doc,
+  setDoc,
+  updateDoc
+} from "https://www.gstatic.com/firebasejs/12.15.0/firebase-firestore.js";
+
+const firebaseConfig = {
+  apiKey: "AIzaSyAw4cJY7oXYrXRyvawehCU7TKCRg5ZS6GY",
+  authDomain: "world-cup-prediction-1ebca.firebaseapp.com",
+  projectId: "world-cup-prediction-1ebca",
+  storageBucket: "world-cup-prediction-1ebca.firebasestorage.app",
+  messagingSenderId: "950989220636",
+  appId: "1:950989220636:web:cd9f82db31549fad3068d9"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
 
 const matches = [
 
 {
-home:"Norway",
-away:"France",
-homeLogo:"norway.png",
-awayLogo:"france.png"
+home:"Belgium",
+homeCode:"BEL",
+
+away:"Senegal",
+awayCode:"SEN",
+
+homeLogo:"bel.png",
+awayLogo:"senegal.png"
 },
 
 {
-home:"Senegal",
-away:"Iraq",
-homeLogo:"senegal.png",
-awayLogo:"iraq.png"
+home:"USA",
+homeCode:"USA",
+
+away:"Bosnia and herzegovina",
+awayCode:"BIH",
+
+homeLogo:"usa.png",
+awayLogo:"bosnia.png"
 },
 
 {
-home:"Cabo Verde",
-away:"Saudi Arabia",
-homeLogo:"cbv.png",
-awayLogo:"sau.png"
+home:"Spain",
+homeCode:"ESP",
+
+away:"Austria",
+awayCode:"AUT",
+
+homeLogo:"spa.png",
+awayLogo:"austria.png"
 },
 
 {
-home:"Uruguay",
-away:"Spain",
-homeLogo:"uru.png",
-awayLogo:"spa.png"
+home:"Portugal",
+homeCode:"POR",
+
+away:"Croatia",
+awayCode:"CRO",
+
+homeLogo:"portugal.png",
+awayLogo:"croatia.png"
 },
 
 {
-home:"New Zealand",
-away:"Belgium",
-homeLogo:"nzld.png",
-awayLogo:"bel.png"
+home:"Switzerland",
+homeCode:"SUI",
+
+away:"Algeria",
+awayCode:"ALG",
+
+homeLogo:"swiz.png",
+awayLogo:"algeria.png"
 },
 
 {
-home:"Egypt",
-away:"Iran",
-homeLogo:"egy.png",
-awayLogo:"irn.png"
-} ,
+home:"Australia",
+homeCode:"AUS",
 
-{
-home:"Egypt",
-away:"Iran",
-homeLogo:"egy.png",
-awayLogo:"irn.png"
+away:"Egypt",
+awayCode:"EGY",
+
+homeLogo:"austra.png",
+awayLogo:"egy.png"
 },
 
 {
-home:"Egypt",
-away:"Iran",
-homeLogo:"egy.png",
-awayLogo:"irn.png"
-}
+home:"Argentina",
+homeCode:"ARG",
+
+away:"Cabo Verde",
+awayCode:"CPV",
+
+homeLogo:"argentina.png",
+awayLogo:"cbv.png"
+},
+{
+home:"colombia",
+homeCode:"COL",
+
+away:"Ghana",
+awayCode:"GHA",
+
+homeLogo:"colombia.png",
+awayLogo:"ghana.jpeg"
+} 
 ];
 
 
 const container = document.getElementById("matches-container");
-
-matches.forEach(match => {
+console.log(matches);
+matches.forEach((match,index) => {
 
 container.innerHTML += `
 
@@ -476,14 +622,46 @@ container.innerHTML += `
 </div>
 
 </div>
+<div class="prediction-options">
 
-<div class="score-area">
+<label>
 
-<input type="number" min="0" class="score home-score">
+<input
+type="radio"
+name="match${index}"
+value="${match.homeCode}">
 
-<span class="vs">VS</span>
+<div class="prediction-btn">
+${match.home}
+</div>
 
-<input type="number" min="0" class="score away-score">
+</label>
+
+<label>
+
+<input
+type="radio"
+name="match${index}"
+value="Draw">
+
+<div class="prediction-btn">
+🤝 Draw
+</div>
+
+</label>
+
+<label>
+
+<input
+type="radio"
+name="match${index}"
+value="${match.awayCode}">
+
+<div class="prediction-btn">
+${match.away}
+</div>
+
+</label>
 
 </div>
 
@@ -493,7 +671,7 @@ container.innerHTML += `
 
 });
 
-async function submitPrediction() {
+window.submitPrediction = async function() {
 
 const btn = document.getElementById("submitBtn");
 
@@ -509,58 +687,156 @@ if (!document.getElementById("name").value) {
   return;
 }
 
-if (document.getElementById("department").value === "Select Department") {
-  alert("Please select your department");
-  btn.disabled = false;
-  btn.innerText = "Submit Prediction";
-  return;
+if(
+document.getElementById("role").value === "Student" &&
+document.getElementById("department").value === "Select Department"
+){
+alert("Please select your department");
+btn.disabled = false;
+btn.innerText = "Submit Prediction";
+return;
 }
 
-if (document.getElementById("year").value === "Select Year") {
-  alert("Please select your year");
-  btn.disabled = false;
-  btn.innerText = "Submit Prediction";
-  return;
+if(
+document.getElementById("role").value === "Student" &&
+!document.getElementById("rollno").value.trim()
+){
+alert("Please enter your roll number");
+btn.disabled = false;
+btn.innerText = "Submit Prediction";
+return;
+}
+
+if(
+document.getElementById("role").value === "Student" &&
+document.getElementById("year").value === "Select Year"
+){
+alert("Please select your year");
+btn.disabled = false;
+btn.innerText = "Submit Prediction";
+return;
 }
 
 
-const scores = [];
+const predictions = [];
 
-document.querySelectorAll(".match-card").forEach(card => {
+let allFilled = true;
 
-const homeScore = card.querySelector(".home-score").value;
-const awayScore = card.querySelector(".away-score").value;
+for(let i=0;i<matches.length;i++){
 
-scores.push(`${homeScore}-${awayScore}`);
+const selected = document.querySelector(
+`input[name="match${i}"]:checked`
+);
 
-});
+if(!selected){
+
+allFilled = false;
+break;
+
+}
+
+predictions.push(selected.value);
+
+}
+
+if(!allFilled){
+
+alert("Please select one prediction for every match.");
+
+btn.disabled = false;
+btn.innerText = "Submit Prediction";
+
+return;
+
+}
+
 
 const data = {
-name: document.getElementById("name").value,
+  name: document.getElementById("name").value,
+  role: document.getElementById("role").value,
+  rollno: document.getElementById("rollno").value,
+
 department: document.getElementById("department").value,
 year: document.getElementById("year").value,
 
-match1: scores[0] || "",
-match2: scores[1] || "",
-match3: scores[2] || "",
-match4: scores[3] || "",
-match5: scores[4] || "",
-match6: scores[5] || "",
-match7: scores[6] || "",
-match8: scores[7] || ""
+match1: predictions[0],
+match2: predictions[1],
+match3: predictions[2],
+match4: predictions[3],
+match5: predictions[4],
+match6: predictions[5],
+match7: predictions[6],
+match8: predictions[7]
 };
+const snapshot = await getDocs(collection(db,"predictions_phase2"));
 
+let alreadySubmitted = false;
+
+snapshot.forEach((doc) => {
+
+const user = doc.data();
+
+if(
+data.role === "Student" &&
+user.rollno === data.rollno
+){
+alreadySubmitted = true;
+}
+
+if(
+data.role === "Faculty" &&
+user.role === "Faculty" &&
+user.name.trim().toLowerCase() === data.name.trim().toLowerCase()
+){
+alreadySubmitted = true;
+}
+
+});
+
+if(alreadySubmitted){
+
+alert("You have already submitted!");
+
+btn.disabled = false;
+btn.innerText = "Submit Prediction";
+
+return;
+}
 try {
 
 const response = await fetch(
-"link",
+"https://script.google.com/macros/s/AKfycbwPxob-mF82HDdFa_baLd_cFhQBUaJ7qVQ4xn_5R5cdEWsj2Wr7vrGeFcgQDSEtkdF9/exec",
 {
 method: "POST",
 body: JSON.stringify(data)
 }
 );
 
-document.querySelector(".container").innerHTML = `
+console.log(response);
+
+await addDoc(
+collection(db, "predictions_phase2"),
+{
+name:data.name,
+role:data.role,
+rollno:data.rollno,
+department:data.department,
+year:data.year,
+match1:data.match1,
+match2:data.match2,
+match3:data.match3,
+match4:data.match4,
+match5:data.match5,
+match6:data.match6,
+match7:data.match7,
+match8:data.match8,
+
+points:0,
+createdAt:Date.now()
+}
+);
+
+document.getElementById("mainContent").innerHTML = `
 <div style="text-align:center;padding:50px">
 
 <div style="display:flex;justify-content:center;gap:20px;">
@@ -579,10 +855,10 @@ Best of luck!
 <p style="margin-top:15px;color:#cbd5e1;">
 Thank you for participating in the World Cup Prediction Hub.
 </p>
-   <!-- <button class="latest-btn"
-onclick="window.open('https://world-cup-prediction1.pages.dev/')">
- Click Here For Lastest Predictions
-</button>-->
+    <button class="latest-btn"
+onclick="window.open('https://wchub.pages.dev/')">
+ Click Here For Home Page
+</button>
 
 <div style="
 margin-top:30px;
@@ -596,9 +872,14 @@ margin-right:auto;
 
 <h3>${data.name}</h3>
 
+${data.role === "Faculty"
+? `<p>Faculty</p>`
+: `
+<p>${data.rollno}</p>
 <p>${data.department}</p>
-
 <p>${data.year}</p>
+`
+}
 
 </div>
 
@@ -617,7 +898,34 @@ btn.innerText = "Submit Prediction";
 
 }
 
-</script>
+document.getElementById("role").addEventListener("change",function(){
 
+const department =
+document.getElementById("department").parentElement;
+
+const year =
+document.getElementById("year").parentElement;
+
+const rollno =
+document.getElementById("rollno").parentElement;
+
+if(this.value === "Faculty"){
+
+department.style.display = "none";
+year.style.display = "none";
+rollno.style.display = "none";
+
+}else{
+
+department.style.display = "block";
+year.style.display = "block";
+rollno.style.display = "block";
+
+}
+
+});
+
+</script>
+</div>
 </body>
 </html>
