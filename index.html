@@ -493,6 +493,7 @@ import {
   collection,
   addDoc,
   getDocs,
+  getDoc,
   doc,
   setDoc,
   updateDoc
@@ -607,6 +608,7 @@ matches.forEach((match,index) => {
 
 container.innerHTML += `
 
+
 <div class="match-card">
 
 <div class="teams">
@@ -657,6 +659,25 @@ ${match.away}
 `;
 
 });
+    for(let i=1;i<=8;i++){
+
+const result = await getDoc(
+doc(db,"phase2_results",`match${i}`)
+);
+
+if(result.exists()){
+
+document
+.querySelectorAll(`input[name="match${i-1}"]`)
+.forEach(input=>{
+
+input.disabled = true;
+
+});
+
+}
+
+}
 
 window.submitPrediction = async function() {
 
