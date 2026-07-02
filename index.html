@@ -225,8 +225,12 @@ select:focus{
     color:white;
     transition:.3s;
     user-select:none;
+    cursor:pointer;
 }
-
+input:disabled + .prediction-btn{
+opacity:0.6;
+cursor:not-allowed;
+}
 .prediction-options label:hover .prediction-btn{
     border-color:#38bdf8;
     transform:translateY(-2px);
@@ -672,6 +676,13 @@ document
 .forEach(input=>{
 
 input.disabled = true;
+
+const btn = input.nextElementSibling;
+
+if(btn){
+btn.innerHTML += " 🔒";
+btn.style.opacity = "0.6";
+}
 
 });
 
